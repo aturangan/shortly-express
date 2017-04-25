@@ -5,24 +5,14 @@ const Model = require('./model');
 
 class User extends Model {
   constructor() {
-    super('user'); 
+    super('users'); 
   }
-
-
-
-  	// create a new user
-
-
-  	// let shaUser = crypto.createHash('sha1'); 
-  	// shaUser.update(options.uri); 
-  	// options.code = shaUser.digest('hex').slice(0, 5); 
-  	// return super.create.call(this, options); 
-
-
-  	//what is the parameter for this 
- 
-
-};
+  get(username) {
+    let parsedOptions = parseData(username);
+    let queryString = `SELECT username FROM ${this.tablename} WHERE ${parsedOptions.string.join(' AND ')}`;
+    return executeQuery(queryString, parsedOptions.values).spread(results => results);
+  }
+}
 
 module.exports = new User();
 

@@ -80,20 +80,19 @@ app.post('/links',
 app.post('/signup', (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
-  var obj = req.body;
+  console.log('##############3', req.url);
+  var hashedPassword = utils.hash(password); //<-- hashed password from utils.create function
 
-  // models.Links.create(obj).bind(this);
-
-  console.log('CREATE', models.User.create.call( this,obj ) );
-
-  // console.log('#########################', username, password);
-
-  res.end()
-})
-
-
-
-
+  models.User.create({username: username, password: hashedPassword})
+  
+  .then( () => {
+    res.redirect(302, '/');
+  })
+  .error( (err) => {
+    res.redirect(404, '/signup');
+    res.end();
+  });
+});
 
 
 /************************************************************/

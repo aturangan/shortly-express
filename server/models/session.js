@@ -7,5 +7,3 @@ const Model = require('./model');
 
 //get and post methods 
 
-
-
