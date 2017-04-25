@@ -86,11 +86,21 @@ app.post('/signup', (req, res, next) => {
   models.User.create({username: username, password: hashedPassword})
   
   .then( () => {
-    res.redirect(302, '/');
-  })
+    res.redirect(302, '/');  //<-- redirects to index after user is created
+  })                   // res.redirect calls res.end() as well. call next() for middleware
   .error( (err) => {
-    res.redirect(404, '/signup');
-    res.end();
+    res.redirect(404, '/signup');  //<-- redirects signup.
+  });
+});
+
+
+app.post('/login', (req, res, next) => {
+  res.redirect(302, '/')  //<-- redirects to index after user is created
+  // .then( () => {
+  //   res.redirect(302, '/');
+  // })
+  .error( (err) => {
+    res.redirect(404, '/login');  //<-- redirects signup.
   });
 });
 
