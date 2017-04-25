@@ -80,11 +80,10 @@ app.post('/links',
 app.post('/signup', (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
-  console.log('##############3', req.url);
+  // var obj = req.body
   var hashedPassword = utils.hash(password); //<-- hashed password from utils.create function
-
   models.User.create({username: username, password: hashedPassword})
-  
+
   .then( () => {
     res.redirect(302, '/');  //<-- redirects to index after user is created
   })                   // res.redirect calls res.end() as well. call next() for middleware
@@ -95,13 +94,30 @@ app.post('/signup', (req, res, next) => {
 
 
 app.post('/login', (req, res, next) => {
-  res.redirect(302, '/')  //<-- redirects to index after user is created
-  // .then( () => {
-  //   res.redirect(302, '/');
-  // })
-  .error( (err) => {
-    res.redirect(404, '/login');  //<-- redirects signup.
+  // determine if login password and username match
+  var username = req.body.username;
+  var password = req.body.password;
+  var hashedPassword = utils.hash(password);
+  
+  models.User.get({username: username, password: hashedPassword})
+  
+  // res.redirect(302, '/')
+  .then( (data) => {
+    if (data === undefined) {
+      res.redirect(404, '/login'); 
+    } else {
+      res.redirect(302, '/'); 
+    }
+    // if (data.username === username && data.password === hashedPassword){
+    //   res.redirect(302, '/');
+    // } else {
+    //   res.redirect(404, '/login');  //<-- redirects to login.
+    // }
   });
+  // .error( (err) => {
+  // });
+
+
 });
 
 

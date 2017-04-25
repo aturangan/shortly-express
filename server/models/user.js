@@ -1,18 +1,29 @@
 const utils = require('../lib/hashUtils');
 const Model = require('./model');
 
+
 // Write your user database model methods here
 
 class User extends Model {
   constructor() {
     super('users'); 
   }
-  get(username) {
-    let parsedOptions = parseData(username);
-    let queryString = `SELECT username FROM ${this.tablename} WHERE ${parsedOptions.string.join(' AND ')}`;
-    return executeQuery(queryString, parsedOptions.values).spread(results => results);
-  }
+
+  //isValidUser method? 
+
+  
+  // isValidUser(user) {
+  // 	return user.match(this.)
+  // }
+
+  // get(data) {
+  //   let parsedOptions = parseData(data);
+  //   let queryString = `SELECT username FROM users WHERE ${parsedOptions.string.join(' AND ')}`;
+  //   return executeQuery(queryString, parsedOptions.values).spread(results => results);
+  // }
 }
+
+
 
 module.exports = new User();
 
