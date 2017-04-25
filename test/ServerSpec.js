@@ -39,16 +39,15 @@ describe('', function() {
     /* TODO: Update user and password if different than on your local machine            */
     /*************************************************************************************/
     db = mysql.createConnection({
-      user: 'student',
-      password: 'student',
+      user: 'root',
+      password: 'plantlife',
       database: 'shortly'
     });
 
     /**************************************************************************************/
     /* TODO: If you create a new MySQL tables, add it to the tablenames collection below. */
     /**************************************************************************************/
-    var tablenames = ['links', 'clicks'
-];
+    var tablenames = ['links', 'clicks', 'users'];
 
     db.connect(function(err) {
       if (err) { return done(err); }
@@ -76,7 +75,7 @@ describe('', function() {
     it('contains id, username, password, timestamp columns', function(done) {
       var newUser = {
         username: 'Howard',
-        password: 'p@ssw0rd'
+        password: 'p@ssw0rd',
       };
       db.query('INSERT INTO users SET ?', newUser, function(err, results) {
         db.query('SELECT * FROM users WHERE username = ?', newUser.username, function(err, results) {
@@ -125,7 +124,7 @@ describe('', function() {
     });
   });
 
-  xdescribe('Account Creation:', function() {
+  describe('Account Creation:', function() {
 
     it('signup creates a new user record', function(done) {
       var options = {
@@ -138,6 +137,7 @@ describe('', function() {
       };
 
       request(options, function(error, res, body) {
+        console.log('Here I is...', body);
         var queryString = 'SELECT * FROM users where username = "Samantha"';
         db.query(queryString, function(err, rows) {
           if (err) { done(err); }
