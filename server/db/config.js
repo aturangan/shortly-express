@@ -23,7 +23,7 @@ module.exports = (db) => {
           id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
           linkId INT,
           timestamp TIMESTAMP
-        );`)
+        );`);
     })
     .then(() => {
       return db.queryAsync(`
@@ -33,7 +33,7 @@ module.exports = (db) => {
           password VARCHAR(40),
           timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
           UNIQUE(username)
-        );`)
+        );`);
     })
     .then(() => {
       return db.queryAsync(`
@@ -42,8 +42,8 @@ module.exports = (db) => {
           hash VARCHAR(40),
           user_id VARCHAR(40),
           timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-        );`)
-    });
+        );`);
+    })
   /************************************************************/
   /*          Add additional schema queries here              */
   /************************************************************/
