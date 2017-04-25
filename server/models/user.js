@@ -5,22 +5,26 @@ const Model = require('./model');
 
 class User extends Model {
   constructor() {
-    super(); 
-
-  
+    super('user'); 
   }
 
 
 
-	// if username already exists in table
-	  //throw error
-	// else 
-	  // add name and data to users table
+  	// create a new user
 
-	
-}
 
-// module.exports = new User();
+  	// let shaUser = crypto.createHash('sha1'); 
+  	// shaUser.update(options.uri); 
+  	// options.code = shaUser.digest('hex').slice(0, 5); 
+  	// return super.create.call(this, options); 
+
+
+  	//what is the parameter for this 
+ 
+
+};
+
+module.exports = new User();
 
 
 

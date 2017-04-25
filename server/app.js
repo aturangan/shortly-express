@@ -78,7 +78,16 @@ app.post('/links',
 
 
 app.post('/signup', (req, res, next) => {
-  
+  var username = req.body.username;
+  var password = req.body.password;
+  var obj = req.body;
+
+  // models.Links.create(obj).bind(this);
+
+  console.log('CREATE', models.User.create.call( this,obj ) );
+
+  // console.log('#########################', username, password);
+
   res.end()
 })
 
