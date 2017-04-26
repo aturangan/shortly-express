@@ -3,17 +3,17 @@ const Model = require('./model');
 
 
 class Session extends Model {
-	constructor() {
-	super('session');
-	}
+  constructor() {
+    super('session');
+  }
 
-	get(req, res) {
-		//asdfkjksjdf
-	}, 
+  get(req, res) {
+    //asdfkjksjdf
+  } 
 
-	post(req, res) {
-		//alskdfjalksj
-	}
+  post(req, res) {
+    //alskdfjalksj
+  }
 }
 
 // Write your session database model methods here
